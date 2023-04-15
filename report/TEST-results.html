@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEST-results.xml</title>
+    <style type="text/css">
+        body {
+    background-color: white;
+    padding-bottom: 20em;
+    margin: 0;
+    min-height: 15cm;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: sans-serif;
+}
+
+h1 {
+    background-color: #007acc;
+    color: white;
+    padding: 3mm;
+    margin-top: 0;
+    margin-bottom: 1mm;
+}
+
+.footer {
+    font-style: italic;
+    font-size: small;
+    text-align: right;
+    padding: 1em;
+}
+
+.testsuite {
+    padding-bottom: 2em;
+    margin-left: 1em;
+}
+
+.proplist {
+    width: 100%;
+    margin-bottom: 2em;
+    border-collapse: collapse;
+    border: 1px solid grey;
+}
+
+.proplist th {
+    background-color: silver;
+    width: 5em;
+    padding: 2px;
+    padding-right: 1em;
+    text-align: left;
+}
+
+.proplist td {
+    padding: 2px;
+}
+
+.index-table {
+    width: 90%;
+    margin-left: 1em;
+}
+
+.index-table td {
+    vertical-align: top;
+    width: 50%;
+}
+
+.failure-index {
+
+}
+
+.toc {
+    margin-bottom: 2em;
+    font-family: monospace;
+}
+
+.stdio, pre {
+    min-height: 1em;
+    background-color: #1e1e1e;
+    color: silver;
+    padding: 0.5em;
+}
+.tdpre {
+    background-color: #1e1e1e;
+}
+
+.test {
+    margin-left: 0.5cm;
+}
+
+.outcome {
+    border-left: 1em;
+    padding: 2px;
+}
+
+.outcome-failed {
+    border-left: 1em solid lightcoral;
+}
+
+.outcome-passed {
+    border-left: 1em solid lightgreen;
+}
+
+.outcome-skipped {
+    border-left: 1em solid lightyellow;
+}
+
+.stats-table {
+}
+
+.stats-table td {
+    min-width: 4em;
+    text-align: right;
+}
+
+.stats-table .failed {
+    background-color: lightcoral;
+}
+
+.stats-table .passed {
+    background-color: lightgreen;
+}
+
+.matrix-table {
+    table-layout: fixed;
+    border-spacing: 0;
+    width: available;
+    margin-left: 1em;
+}
+
+.matrix-table td {
+    vertical-align: center;
+}
+
+.matrix-table td:last-child {
+    width: 0;
+}
+
+.matrix-table tr:hover {
+    background-color: yellow;
+}
+
+.matrix-axis-name {
+    white-space: nowrap;
+    padding-right: 0.5em;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    text-align: right;
+}
+
+.matrix-axis-line {
+    border-left: 1px solid black;
+    width: 0.5em;
+}
+
+.matrix-classname {
+    text-align: left;
+    width: 100%;
+    border-top: 2px solid grey;
+    border-bottom: 1px solid silver;
+}
+
+.matrix-casename {
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 1em;
+    border-bottom: 1px solid silver;
+}
+
+.matrix-result {
+    display: block;
+    width: 1em;
+    text-align: center;
+    padding: 1mm;
+    margin: 0;
+}
+
+.matrix-result-combined {
+    white-space: nowrap;
+    padding-right: 0.2em;
+    text-align: right;
+}
+
+.matrix-result-failed {
+    background-color: lightcoral;
+}
+
+.matrix-result-passed {
+    background-color: lightgreen;
+}
+
+.matrix-result-skipped {
+    background-color: lightyellow;
+}
+
+.matrix-even {
+    background-color: lightgray;
+}
+    </style>
+</head>
+<body>
+    
+<h1>
+    Test Report : TEST-results.xml
+</h1>
+<a id="toc"></a>
+<table class="index-table">
+    <tr>
+        <td>
+            <ul class="toc">
+            
+                
+                <li>Contract: Lottery Week 0
+                <ul>
+                    
+                    <li><a href="#993f560e-f5df-4f2c-8fd2-20ca383f1c76">Contract Balance should be equal to 6 eth</a></li>
+                    
+                    <li><a href="#99d12d45-d8fa-4f82-ba6e-87110a25ee38">Calling winnerIs before the end of the week should fail</a></li>
+                    
+                    <li><a href="#1c6071e2-8029-4b1e-8f1a-5e5e43e2f6ad">Claiming the prize before the week ended should fail</a></li>
+                    
+                    <li><a href="#acce41cf-8a7d-424a-8efd-d7095f5bc986">Claiming royalties from non owner should fail</a></li>
+                    
+                    <li><a href="#e9e47ed6-9fe2-4646-b358-238351f56b96">Claiming royalties before the winner has been picked should fail</a></li>
+                    
+                    <li><a href="#3c992fcf-2258-4f78-9908-e70d03233b56">Picking the winner before the end of the waiting delay should fail</a></li>
+                    
+                    <li><a href="#f6096b25-c018-47d0-ab1c-952338c013c0">Picking the winner after the waiting delay should succed &amp; picker should get his reward</a></li>
+                    
+                    <li><a href="#0a55a1bd-86fe-4446-b199-746a22a4d255">Better who didn&#39;t win try to claim the prize</a></li>
+                    
+                    <li><a href="#606636be-a29d-4a78-9f2f-bfc5cc0bf34f">Owner tries to claim the prize of the winner</a></li>
+                    
+                    <li><a href="#8ce3f70e-853b-4f0e-9f60-914d1f2d7e8b">Owner tries to claim the price of the winner as an unclaimed prize</a></li>
+                    
+                    <li><a href="#eb47636c-4024-460d-9b3d-b8d7ff02ec84">Winner should get his prize</a></li>
+                    
+                    <li><a href="#3c9c283a-3be7-4f6e-9a35-6073fc5c1f15">Winner claims his prize twice</a></li>
+                    
+                    <li><a href="#861de25c-ed95-4df0-936c-3b5c03d60e63">Owner tries to claim the prize of the winner</a></li>
+                    
+                    <li><a href="#7089f9fe-be1e-4f9a-a7e9-ae802bae3340">Owner tries to claim the prize of the winner as an unclaimed prize</a></li>
+                    
+                    <li><a href="#182d9737-b6e5-4d61-b056-22a88bd9129f">Owner tries to claim the prize of the winner as an unclaimed prize after the claiming delay</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to claim unclaimed prize  Week 0
+                <ul>
+                    
+                    <li><a href="#d397bd26-0832-4413-b49d-129a4ba05214">Contract Balance should be equal to 10 eth</a></li>
+                    
+                    <li><a href="#05d277d1-04e8-4637-9929-3f448f03f12c">Owner tries to claim week 1 prize before the first bet</a></li>
+                    
+                    <li><a href="#78f6c2db-db8d-4910-b6d3-d208f95d0cf0">Owner can claim a prize if there weren&#39;t any particpant on week 1</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#39;t claim his prize
+                <ul>
+                    
+                    <li><a href="#64e3157a-0686-418e-b06b-3b36a5cec219">The lottery amount should be 0.8 ether</a></li>
+                    
+                    <li><a href="#bc53cac4-e00e-4dc2-87c0-a4440bb5812f">Owner tries to claim the unclaimed prize before the lottery is closed</a></li>
+                    
+                    <li><a href="#c235f369-2c57-401c-bd5a-eb81e2cf1130">Owner tries to claim the unclaimed prize when the lottery is closed</a></li>
+                    
+                    <li><a href="#ca74258e-6069-414f-aa9b-f33584283c42">Owner can claim an unclaimed prize when the claiming period is finished</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 0
+                <ul>
+                    
+                    <li><a href="#ec4392cb-8f96-4f38-8d53-bbcd401fad1d">Contract Balance should be equal to 10 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 1 : 0 participant
+                <ul>
+                    
+                    <li><a href="#72e81adb-3793-4d4c-a67a-ec89efca36a1">Amount of prize should be 1 ether</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to claim unclaimed prize if there is 0 participant Owner tries to claim the prize before the lottery is closed
+                <ul>
+                    
+                    <li><a href="#25fe7041-ba0c-4412-881d-fd1947976e32">Claiming the prize before the lottery is closed should fail</a></li>
+                    
+                    <li><a href="#68fccdce-e11c-4512-a21d-dfe82efd19ea">Claiming the prize 1 minute before the lottery is closed should fail</a></li>
+                    
+                    <li><a href="#bedb1849-3d22-4bf1-b8d3-417b82520fca">Claiming the prize 1 second after the lottery is closed should succeed</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Prize Winner try to drain the contract funds Week 0
+                <ul>
+                    
+                    <li><a href="#cffa8a8b-8c45-414d-a05e-2360941537fe">Contract Balance should be equal to 10 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Prize Winner try to drain the contract funds Week 1
+                <ul>
+                    
+                    <li><a href="#08b15deb-c3bc-41d2-8039-31a1018cb54b">Winner should be the attack contract</a></li>
+                    
+                    <li><a href="#d9f2426a-78d9-4038-a57c-e62296927a10">Attacker prize should be 8 eth</a></li>
+                    
+                    <li><a href="#626e1950-6f34-49bc-9c43-7e30afc0710b">Owner sent a 70 eth gift - Balance should be 80 eth</a></li>
+                    
+                    <li><a href="#e4c070fd-e727-434c-b447-410ce14a1998">Winner attack should fail</a></li>
+                    
+                    <li><a href="#01e8c335-0fba-4805-a255-cc8ad63b74fd">Now the attacker is screwed, he will never be able to claim his prize because he implemented a reentrancy attack in his receive function. Each time he calls claimPrize(), he receives his prize but call claimPrize again and the whole transaction is reverted because of lack of gas</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to drain the funds with claimRoyalty() Week 0
+                <ul>
+                    
+                    <li><a href="#0ed4e079-c903-48fb-acf9-eac92e6a4bf5">Contract Balance should be equal to 10 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to drain the funds with claimRoyalty() Week 1
+                <ul>
+                    
+                    <li><a href="#fb70648a-feba-45d6-8fb8-69928b5bb22a">New owner should be the blocker contract</a></li>
+                    
+                    <li><a href="#ea7757e8-5cfc-424b-9e9a-bfdfdf71aabd">A player pick the winner, he should get his reward, but the owner should block the royalty transfer</a></li>
+                    
+                    <li><a href="#c296e143-1e8a-4896-aa66-f5ec67370321">Contract Balance should be 9.5 ether</a></li>
+                    
+                    <li><a href="#4cb4cef1-b198-46bf-b67a-5cc80ca0b0c4">Claimable royalty should be 0.5 ether</a></li>
+                    
+                    <li><a href="#967409d2-a786-4578-a75b-476eef53f2a4">New owner should be the attacker contract</a></li>
+                    
+                    <li><a href="#77e297ce-1b84-46cb-aa6b-5e0e54f8e98c">Owner attack should fail</a></li>
+                    
+                    <li><a href="#2e41a6e3-74e1-44ea-b19e-97807b5c930d">Owner could&#39;nt get his royalty. But he can still transfer the lottery ownership to an External Owned Account and call again claimRoyalty() without trying to perform a reentrancy attack</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 0
+                <ul>
+                    
+                    <li><a href="#b3e4c7db-b976-4d27-b64d-7deb6c180758">Contract Balance should be equal to 10 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 1
+                <ul>
+                    
+                    <li><a href="#1c57c625-f81b-401b-82b5-6072a49da16a">Winner from week 0 should be picked</a></li>
+                    
+                    <li><a href="#d1054deb-5c44-42c6-86f5-4fb9efcb01f3">New owner should be the attacker contract</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() 90 days later
+                <ul>
+                    
+                    <li><a href="#33cbe6e9-02a1-4afd-ac1d-2dae9dfd9ad1">Owner attack should fail</a></li>
+                    
+                    <li><a href="#629be81d-6c5a-4c90-81bc-f8b193e3d9dd">Owner could&#39;nt get the unclaimed Prize. But he can still transfer the lottery ownership to an External Owned Account and call again claimUnclaimedPrize() without trying to perform a reentrancy attack</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Decreasing bets from 100 to 1 Week 0
+                <ul>
+                    
+                    <li><a href="#de58c2bb-388d-4f5c-8fee-c8bb0720f5f0">100 bets - Contract balance should be 100 eth</a></li>
+                    
+                    <li><a href="#f6d3acb3-7ad9-4fbb-b0b3-02ab7eb8650e">Pick winner + Prize claiming - Contract balance should be 10 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Decreasing bets from 100 to 1 Week 1
+                <ul>
+                    
+                    <li><a href="#20884fc9-132b-438e-a2a5-78578caa371b">10 bets - Balance should be 20 eth</a></li>
+                    
+                    <li><a href="#93a6a003-5ce2-454d-8e1a-0be1509aef0f">Pick winner + Prize claiming - Contract balance should be 1 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>Contract: Decreasing bets from 100 to 1 Week 2
+                <ul>
+                    
+                    <li><a href="#78db154a-791b-4675-adbe-859764aacc89">1 bets - Balance should be 2 eth</a></li>
+                    
+                    <li><a href="#df7ce932-52bb-48ef-8710-d5f4a3a73ed2">Pick winner + Prize claiming - Contract balance should be 0.1 eth</a></li>
+                    
+                </ul>
+                </li>
+                
+            
+            </ul>
+        </td>
+        <td class="failure-index">
+            <ul class="toc">
+            
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                
+            
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+    <div class="testsuite">
+        <h2>Test Suite: Mocha Tests</h2>
+        <a id="e6f499fa-cf60-4f0f-96df-9723ee6beeda"></a>
+        
+        
+        <h3>Results</h3>
+        <table class="proplist">
+            <tr>
+                <th>Duration</th><td>33.364 sec</td>
+            </tr>
+            <tr>
+                <th>Tests</th><td>52</td>
+            </tr>
+            <tr>
+                <th>Failures</th><td>0</td>
+            </tr>
+        </table>
+
+        <div class="testclasses">
+            <h3>Tests</h3>
+            
+            <div class="testclass">
+                <h4>Contract: Lottery Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="993f560e-f5df-4f2c-8fd2-20ca383f1c76"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 6 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>2.561 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="99d12d45-d8fa-4f82-ba6e-87110a25ee38"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Calling winnerIs before the end of the week should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>1.911 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="1c6071e2-8029-4b1e-8f1a-5e5e43e2f6ad"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming the prize before the week ended should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.129 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="acce41cf-8a7d-424a-8efd-d7095f5bc986"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming royalties from non owner should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.057 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="e9e47ed6-9fe2-4646-b358-238351f56b96"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming royalties before the winner has been picked should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.076 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="3c992fcf-2258-4f78-9908-e70d03233b56"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Picking the winner before the end of the waiting delay should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.092 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f6096b25-c018-47d0-ab1c-952338c013c0"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Picking the winner after the waiting delay should succed &amp; picker should get his reward</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.658 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="0a55a1bd-86fe-4446-b199-746a22a4d255"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Better who didn&#39;t win try to claim the prize</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.079 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="606636be-a29d-4a78-9f2f-bfc5cc0bf34f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the prize of the winner</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.048 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="8ce3f70e-853b-4f0e-9f60-914d1f2d7e8b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the price of the winner as an unclaimed prize</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.05 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="eb47636c-4024-460d-9b3d-b8d7ff02ec84"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Winner should get his prize</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.314 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="3c9c283a-3be7-4f6e-9a35-6073fc5c1f15"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Winner claims his prize twice</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.073 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="861de25c-ed95-4df0-936c-3b5c03d60e63"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the prize of the winner</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.052 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="7089f9fe-be1e-4f9a-a7e9-ae802bae3340"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the prize of the winner as an unclaimed prize</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.044 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="182d9737-b6e5-4d61-b056-22a88bd9129f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the prize of the winner as an unclaimed prize after the claiming delay</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.121 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to claim unclaimed prize  Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="d397bd26-0832-4413-b49d-129a4ba05214"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>2.754 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="05d277d1-04e8-4637-9929-3f448f03f12c"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim week 1 prize before the first bet</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.058 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="78f6c2db-db8d-4910-b6d3-d208f95d0cf0"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner can claim a prize if there weren&#39;t any particpant on week 1</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.266 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#39;t claim his prize</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="64e3157a-0686-418e-b06b-3b36a5cec219"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>The lottery amount should be 0.8 ether</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.273 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="bc53cac4-e00e-4dc2-87c0-a4440bb5812f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the unclaimed prize before the lottery is closed</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.039 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="c235f369-2c57-401c-bd5a-eb81e2cf1130"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner tries to claim the unclaimed prize when the lottery is closed</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.401 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="ca74258e-6069-414f-aa9b-f33584283c42"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner can claim an unclaimed prize when the claiming period is finished</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.321 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="ec4392cb-8f96-4f38-8d53-bbcd401fad1d"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>2.642 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 1 : 0 participant</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="72e81adb-3793-4d4c-a67a-ec89efca36a1"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Amount of prize should be 1 ether</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.03 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to claim unclaimed prize if there is 0 participant Owner tries to claim the prize before the lottery is closed</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="25fe7041-ba0c-4412-881d-fd1947976e32"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming the prize before the lottery is closed should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.052 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="68fccdce-e11c-4512-a21d-dfe82efd19ea"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming the prize 1 minute before the lottery is closed should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.073 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="bedb1849-3d22-4bf1-b8d3-417b82520fca"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claiming the prize 1 second after the lottery is closed should succeed</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.345 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Prize Winner try to drain the contract funds Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="cffa8a8b-8c45-414d-a05e-2360941537fe"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>1.087 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Prize Winner try to drain the contract funds Week 1</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="08b15deb-c3bc-41d2-8039-31a1018cb54b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Winner should be the attack contract</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.129 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="d9f2426a-78d9-4038-a57c-e62296927a10"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Attacker prize should be 8 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.022 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="626e1950-6f34-49bc-9c43-7e30afc0710b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner sent a 70 eth gift - Balance should be 80 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.054 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="e4c070fd-e727-434c-b447-410ce14a1998"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Winner attack should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.214 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="01e8c335-0fba-4805-a255-cc8ad63b74fd"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Now the attacker is screwed, he will never be able to claim his prize because he implemented a reentrancy attack in his receive function. Each time he calls claimPrize(), he receives his prize but call claimPrize again and the whole transaction is reverted because of lack of gas</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.001 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to drain the funds with claimRoyalty() Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="0ed4e079-c903-48fb-acf9-eac92e6a4bf5"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.981 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to drain the funds with claimRoyalty() Week 1</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="fb70648a-feba-45d6-8fb8-69928b5bb22a"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>New owner should be the blocker contract</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.058 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="ea7757e8-5cfc-424b-9e9a-bfdfdf71aabd"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>A player pick the winner, he should get his reward, but the owner should block the royalty transfer</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.514 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="c296e143-1e8a-4896-aa66-f5ec67370321"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be 9.5 ether</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.003 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="4cb4cef1-b198-46bf-b67a-5cc80ca0b0c4"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Claimable royalty should be 0.5 ether</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.009 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="967409d2-a786-4578-a75b-476eef53f2a4"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>New owner should be the attacker contract</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.048 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="77e297ce-1b84-46cb-aa6b-5e0e54f8e98c"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner attack should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.056 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="2e41a6e3-74e1-44ea-b19e-97807b5c930d"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner could&#39;nt get his royalty. But he can still transfer the lottery ownership to an External Owned Account and call again claimRoyalty() without trying to perform a reentrancy attack</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="b3e4c7db-b976-4d27-b64d-7deb6c180758"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Contract Balance should be equal to 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>1.098 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 1</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="1c57c625-f81b-401b-82b5-6072a49da16a"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Winner from week 0 should be picked</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.108 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="d1054deb-5c44-42c6-86f5-4fb9efcb01f3"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>New owner should be the attacker contract</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.042 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() 90 days later</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="33cbe6e9-02a1-4afd-ac1d-2dae9dfd9ad1"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner attack should fail</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.072 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="629be81d-6c5a-4c90-81bc-f8b193e3d9dd"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Owner could&#39;nt get the unclaimed Prize. But he can still transfer the lottery ownership to an External Owned Account and call again claimUnclaimedPrize() without trying to perform a reentrancy attack</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Decreasing bets from 100 to 1 Week 0</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="de58c2bb-388d-4f5c-8fee-c8bb0720f5f0"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>100 bets - Contract balance should be 100 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>7.682 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f6d3acb3-7ad9-4fbb-b0b3-02ab7eb8650e"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Pick winner + Prize claiming - Contract balance should be 10 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.359 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Decreasing bets from 100 to 1 Week 1</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="20884fc9-132b-438e-a2a5-78578caa371b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>10 bets - Balance should be 20 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.907 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="93a6a003-5ce2-454d-8e1a-0be1509aef0f"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Pick winner + Prize claiming - Contract balance should be 1 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.344 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>Contract: Decreasing bets from 100 to 1 Week 2</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="78db154a-791b-4675-adbe-859764aacc89"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>1 bets - Balance should be 2 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.127 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="df7ce932-52bb-48ef-8710-d5f4a3a73ed2"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>Pick winner + Prize claiming - Contract balance should be 0.1 eth</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.241 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+
+
+<p class="footer">
+    Generated by junit2html
+</p>
+</body>
+</html>
