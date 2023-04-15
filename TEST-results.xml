@@ -1,0 +1,54 @@
+<testsuite name="Mocha Tests" tests="52" failures="0" errors="0" skipped="0" timestamp="Tue, 04 Apr 2023 14:38:40 GMT" time="33.364">
+<testcase classname="Contract: Lottery Week 0" name="Contract Balance should be equal to 6 eth" time="2.561"/>
+<testcase classname="Contract: Lottery Week 0" name="Calling winnerIs before the end of the week should fail" time="1.911"/>
+<testcase classname="Contract: Lottery Week 0" name="Claiming the prize before the week ended should fail" time="0.129"/>
+<testcase classname="Contract: Lottery Week 0" name="Claiming royalties from non owner should fail" time="0.057"/>
+<testcase classname="Contract: Lottery Week 0" name="Claiming royalties before the winner has been picked should fail" time="0.076"/>
+<testcase classname="Contract: Lottery Week 0" name="Picking the winner before the end of the waiting delay should fail" time="0.092"/>
+<testcase classname="Contract: Lottery Week 0" name="Picking the winner after the waiting delay should succed &#x26; picker should get his reward" time="0.658"/>
+<testcase classname="Contract: Lottery Week 0" name="Better who didn&#x27;t win try to claim the prize" time="0.079"/>
+<testcase classname="Contract: Lottery Week 0" name="Owner tries to claim the prize of the winner" time="0.048"/>
+<testcase classname="Contract: Lottery Week 0" name="Owner tries to claim the price of the winner as an unclaimed prize" time="0.05"/>
+<testcase classname="Contract: Lottery Week 0" name="Winner should get his prize" time="0.314"/>
+<testcase classname="Contract: Lottery Week 0" name="Winner claims his prize twice" time="0.073"/>
+<testcase classname="Contract: Lottery Week 0" name="Owner tries to claim the prize of the winner" time="0.052"/>
+<testcase classname="Contract: Lottery Week 0" name="Owner tries to claim the prize of the winner as an unclaimed prize" time="0.044"/>
+<testcase classname="Contract: Lottery Week 0" name="Owner tries to claim the prize of the winner as an unclaimed prize after the claiming delay" time="0.121"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 0" name="Contract Balance should be equal to 10 eth" time="2.754"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 0" name="Owner tries to claim week 1 prize before the first bet" time="0.058"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 0" name="Owner can claim a prize if there weren&#x27;t any particpant on week 1" time="0.266"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#x27;t claim his prize" name="The lottery amount should be 0.8 ether" time="0.273"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#x27;t claim his prize" name="Owner tries to claim the unclaimed prize before the lottery is closed" time="0.039"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#x27;t claim his prize" name="Owner tries to claim the unclaimed prize when the lottery is closed" time="0.401"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize  Week 3 : The winner don&#x27;t claim his prize" name="Owner can claim an unclaimed prize when the claiming period is finished" time="0.321"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 0" name="Contract Balance should be equal to 10 eth" time="2.642"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize if there is 0 participant Week 1 : 0 participant" name="Amount of prize should be 1 ether" time="0.03"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize if there is 0 participant Owner tries to claim the prize before the lottery is closed" name="Claiming the prize before the lottery is closed should fail" time="0.052"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize if there is 0 participant Owner tries to claim the prize before the lottery is closed" name="Claiming the prize 1 minute before the lottery is closed should fail" time="0.073"/>
+<testcase classname="Contract: Owner tries to claim unclaimed prize if there is 0 participant Owner tries to claim the prize before the lottery is closed" name="Claiming the prize 1 second after the lottery is closed should succeed" time="0.345"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 0" name="Contract Balance should be equal to 10 eth" time="1.087"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 1" name="Winner should be the attack contract" time="0.129"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 1" name="Attacker prize should be 8 eth" time="0.022"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 1" name="Owner sent a 70 eth gift - Balance should be 80 eth" time="0.054"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 1" name="Winner attack should fail" time="0.214"/>
+<testcase classname="Contract: Prize Winner try to drain the contract funds Week 1" name="Now the attacker is screwed, he will never be able to claim his prize because he implemented a reentrancy attack in his receive function. Each time he calls claimPrize(), he receives his prize but call claimPrize again and the whole transaction is reverted because of lack of gas" time="0.001"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 0" name="Contract Balance should be equal to 10 eth" time="0.981"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="New owner should be the blocker contract" time="0.058"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="A player pick the winner, he should get his reward, but the owner should block the royalty transfer" time="0.514"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="Contract Balance should be 9.5 ether" time="0.003"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="Claimable royalty should be 0.5 ether" time="0.009"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="New owner should be the attacker contract" time="0.048"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="Owner attack should fail" time="0.056"/>
+<testcase classname="Contract: Owner tries to drain the funds with claimRoyalty() Week 1" name="Owner could&#x27;nt get his royalty. But he can still transfer the lottery ownership to an External Owned Account and call again claimRoyalty() without trying to perform a reentrancy attack" time="0"/>
+<testcase classname="Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 0" name="Contract Balance should be equal to 10 eth" time="1.098"/>
+<testcase classname="Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 1" name="Winner from week 0 should be picked" time="0.108"/>
+<testcase classname="Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() Week 1" name="New owner should be the attacker contract" time="0.042"/>
+<testcase classname="Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() 90 days later" name="Owner attack should fail" time="0.072"/>
+<testcase classname="Contract: Owner tries to drain the contract funds with claimUnclaimedPrize() 90 days later" name="Owner could&#x27;nt get the unclaimed Prize. But he can still transfer the lottery ownership to an External Owned Account and call again claimUnclaimedPrize() without trying to perform a reentrancy attack" time="0"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 0" name="100 bets - Contract balance should be 100 eth" time="7.682"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 0" name="Pick winner + Prize claiming - Contract balance should be 10 eth" time="0.359"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 1" name="10 bets - Balance should be 20 eth" time="0.907"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 1" name="Pick winner + Prize claiming - Contract balance should be 1 eth" time="0.344"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 2" name="1 bets - Balance should be 2 eth" time="0.127"/>
+<testcase classname="Contract: Decreasing bets from 100 to 1 Week 2" name="Pick winner + Prize claiming - Contract balance should be 0.1 eth" time="0.241"/>
+</testsuite>

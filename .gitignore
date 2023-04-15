@@ -1,0 +1,6 @@
+.secret
+.infura
+.etherscan
+.polygonscan
+.env
+node_modules
